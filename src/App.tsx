@@ -1,25 +1,21 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { PATH_LOGIN, PATH_ROOT } from "./constants";
+import Login from "./components/Auth";
+import AuthenticationComponent from "./components/AuthenticationComponent";
+import BodyGlobalStyle from "./style/css/Globalstyle";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload...
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <BodyGlobalStyle />
+      <Routes>
+        {/*  Login component */}
+        <Route path={PATH_LOGIN} element={<Login />} />
+        {/*  Default component */}
+        <Route path={PATH_ROOT} element={<AuthenticationComponent />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
