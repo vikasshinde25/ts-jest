@@ -1,0 +1,45 @@
+export const userList = [
+  { email: "vshinde@buyboxexperts.com", password: "vikas@123" },
+  { email: "vikas.s@amazatic.com", password: "vikas@123" },
+  { email: "vibashinde@gmail.com", password: "vikas@123" },
+  { email: "v@gmail.com", password: "vikas@123" },
+];
+
+export const userData = [
+  {
+    fist_name: "Vikas",
+    last_name: "Shinde",
+    userId: "vs01",
+    email: "vshinde@buyboxexperts.com",
+    contact: 7875778957,
+    country: "India",
+    state: "maharastra",
+    pincode: "411061",
+    Address: "Pimple gurav",
+    user_role: "Admin",
+  },
+  {
+    fist_name: "Vikas",
+    last_name: "Shinde",
+    userId: "vs02",
+    email: "vikas.s@amazatic.com",
+    contact: 7875778957,
+    country: "India",
+    state: "maharastra",
+    pincode: "411061",
+    Address: "Pimple gurav",
+    user_role: "general",
+  },
+  {
+    fist_name: "Vikas",
+    last_name: "Shinde",
+    userId: "vs03",
+    email: "vibashinde@gmail.com",
+    contact: 7875778957,
+    country: "India",
+    state: "maharastra",
+    pincode: "411061",
+    Address: "Pimple gurav",
+    user_role: "manager",
+  },
+];

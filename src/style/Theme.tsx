@@ -1,9 +1,9 @@
 const Theme = {
   /* Theme Base color */
   white: "#ffffff",
-  red: "#D60000",
-  lightRed: "#fbf2f2",
-  darkRed: "#d63649",
+  red: "#ff0000",
+  lightRed: "#ff0000",
+  darkRed: "#C00000",
   pink: "#f6d2c9",
   yellow: "#f7c137",
   orange: "#FF5933",
@@ -19,8 +19,8 @@ const Theme = {
   gray8: "#F4F6FC",
 
   /* Colors */
-  baseColor: "#FF5933",
-  secondaryColor: "#e74b28",
+  baseColor: "#009900",
+  secondaryColor: "#006600",
 
   /* ********** font size ********** */
   extraSmall: "11px",
@@ -40,7 +40,7 @@ const Theme = {
 
   /* Box Shadow */
   commonShadow: "0 10px 20px 0 rgba(46, 91, 255, 0.07)",
-  boxShadow: "0px 0px 5px 5px rgba(46, 91, 255, 0.04)",
+  boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.3)",
 };
 
 export default Theme;

@@ -17,7 +17,7 @@ const InputFormField = styled.div`
     border: 1px solid ${Theme.gray45};
     font-family: ${Theme.baseFontFamily};
     font-size: ${Theme.small};
-    border-radius: 2px;
+    border-radius: 5px;
     padding: 5px 10px;
     display: block;
     width: 100%;

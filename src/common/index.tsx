@@ -1,4 +1,6 @@
-import Authbox from "./Authbox";
+import AuthContainer from "./AuthContainer";
+import Button from "./Button";
+import ErrorBox from "./ErrorBox";
 import InputFormField from "./InputFormField";
 
-export { Authbox, InputFormField };
+export { AuthContainer, Button, ErrorBox, InputFormField };
