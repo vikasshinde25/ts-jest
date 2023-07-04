@@ -5,7 +5,7 @@ export const userList = [
   { email: "v@gmail.com", password: "vikas@123" },
 ];
 
-export const userData = [
+export const userDetails = [
   {
     fist_name: "Vikas",
     last_name: "Shinde",

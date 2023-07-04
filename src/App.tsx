@@ -6,6 +6,7 @@ import AuthenticationComponent from "./components/AuthenticationComponent";
 import BodyGlobalStyle from "./style/css/Globalstyle";
 
 function App() {
+  /* ********** Main return statement of this component ********** */
   return (
     <BrowserRouter>
       <BodyGlobalStyle />

@@ -3,8 +3,8 @@ import axios from "axios";
 import { NON_AUTHORIZATION_APIS } from "./constants";
 
 const axiosInstance = axios.create({
-  baseURL:
-    process.env.REACT_APP_BASE_APP_URL + process.env.REACT_APP_API_VERSION,
+  baseURL: "https://onboarding-staging-be.bbenext.com/api/1.0.0/",
+  // process.env.REACT_APP_BASE_APP_URL + process.env.REACT_APP_API_VERSION,
 });
 
 // Add a request interceptor

@@ -23,6 +23,10 @@ const BodyGlobalStyle = createGlobalStyle`
     width: 100%;
     height: auto;
   }
+  ul{
+    margin:0;
+    padding:0;
+  }
   .w-100{
     width:100%;
   }
@@ -41,6 +45,8 @@ const BodyGlobalStyle = createGlobalStyle`
   }
   .p-20{
     padding: 20px;
-  }    
+  }  
+ 
+}  
 `;
 export default BodyGlobalStyle;

@@ -1,42 +1,33 @@
 import React, { useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import { AuthContainer, Button, ErrorBox, InputFormField } from "../../common";
-import { checkUserValidation } from "../../api";
-import { userList } from "../../constants";
+import { AppDispatch } from "../../store";
+import { PATH_DASHBOARD, PATH_LOGIN } from "../../constants";
+import SiteBranding from "../../common/SiteBranding";
+import { userLogin } from "../../redux/services/UserServices";
 
 function Login() {
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [loginError, setLoginError] = useState("");
   const [loginloader, setLoginLoader] = useState(false);
 
-  // handle user validation
-  const handleUserValidation = (userData: {
-    email: string;
-    password: string;
-  }) => {
-    // user validation
-    const isEmailValid = userList?.some(
-      (item) => item?.email === userData?.email
-    );
-    const isPasswordValid = userList?.some(
-      (item) => item?.password === userData?.password
-    );
+  console.log("================================");
+  // useEffect for checking authentication
+  // useEffect(() => {
+  // const isLoggedIn = !!localStorage.getItem("token");
+  //   if (isLoggedIn) {
+  //     navigate(PATH_DASHBOARD);
+  //   } else {
+  //     navigate(PATH_LOGIN);
+  //   }
+  // }, [isLoggedIn, navigate]);
 
-    checkUserValidation(userData).then(() => {
-      if (isEmailValid) {
-        if (isPasswordValid) {
-          localStorage.setItem("token", "USER_TOKEN");
-        } else {
-          setLoginError("Oops!... Invalid Credentials.");
-        }
-      } else {
-        setLoginError(
-          "Email do not exist. Please contact system administration"
-        );
-      }
-      setLoginLoader(false);
-    });
-  };
   // handle login events
   const handleLoginDetails = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -61,8 +52,17 @@ function Login() {
     const isPasswordValid = loginData?.password?.length >= 8;
 
     if (isEmailValid && isPasswordValid) {
-      handleUserValidation(loginData);
-      setLoginError("");
+      dispatch(userLogin(loginData))
+        .unwrap()
+        .then(() => {
+          navigate(PATH_DASHBOARD);
+          setLoginLoader(false);
+        })
+        .catch((error) => {
+          navigate(PATH_LOGIN);
+          setLoginError(error?.data?.non_field_errors?.[0]);
+          setLoginLoader(false);
+        });
     } else {
       setLoginError("Oops!... Invalid Credentials.");
       setLoginLoader(false);
@@ -125,8 +125,9 @@ function Login() {
   return (
     <AuthContainer>
       <div className="row mx-0 h-100">
-        <div className="col-12 col-lg-7 pl-0 pr-0">
+        <div className="col-12 col-lg-7 px-0">
           <div className="bg-image flex-content-center p-20">
+            <SiteBranding logoType="white" maxWidth="120px" />
             <div className="d-lg-none w-100">{displayAuthbox()}</div>
           </div>
         </div>

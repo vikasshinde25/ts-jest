@@ -1,18 +1,28 @@
 import React from "react";
 
 import ReactDOM from "react-dom/client";
+// import dotenv from "dotenv";
+import { Provider } from "react-redux";
 
 import "./index.css";
 import App from "./App";
-import "./style/css/bootstrap-grid.min.css";
+import "./style/css/bootstrapGrid.css";
 import reportWebVitals from "./reportWebVitals";
+import { store } from "./store";
+
+// dotenv.config();
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+const isLoggedIn = !!localStorage.getItem("token");
+console.log("isLoggedIn", isLoggedIn);
+
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

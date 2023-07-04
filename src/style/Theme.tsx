@@ -19,8 +19,8 @@ const Theme = {
   gray8: "#F4F6FC",
 
   /* Colors */
-  baseColor: "#009900",
-  secondaryColor: "#006600",
+  baseColor: "#009270",
+  secondaryColor: "#007575",
 
   /* ********** font size ********** */
   extraSmall: "11px",
