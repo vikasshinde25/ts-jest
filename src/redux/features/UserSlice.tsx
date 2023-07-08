@@ -33,7 +33,7 @@ const UserSlice = createSlice({
     builder.addCase(userMe.fulfilled, (state, action) => {
       const userState = state;
       userState.isLoggedIn = true;
-      userState.userData = action?.payload?.data?.user;
+      userState.userData = action?.payload?.data;
       userState.error = null;
     });
   },

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -17,16 +17,15 @@ function Login() {
   const [loginError, setLoginError] = useState("");
   const [loginloader, setLoginLoader] = useState(false);
 
-  console.log("================================");
   // useEffect for checking authentication
-  // useEffect(() => {
-  // const isLoggedIn = !!localStorage.getItem("token");
-  //   if (isLoggedIn) {
-  //     navigate(PATH_DASHBOARD);
-  //   } else {
-  //     navigate(PATH_LOGIN);
-  //   }
-  // }, [isLoggedIn, navigate]);
+  useEffect(() => {
+    const isLoggedIn = !!localStorage.getItem("token");
+    if (isLoggedIn) {
+      navigate(PATH_DASHBOARD);
+    } else {
+      navigate(PATH_LOGIN);
+    }
+  }, [navigate]);
 
   // handle login events
   const handleLoginDetails = (
@@ -64,7 +63,12 @@ function Login() {
           setLoginLoader(false);
         });
     } else {
-      setLoginError("Oops!... Invalid Credentials.");
+      if (!isPasswordValid) {
+        setLoginError("Password should have at least 8 characters...");
+      } else {
+        setLoginError("Oops!... Invalid Credentials.");
+      }
+
       setLoginLoader(false);
     }
   };
@@ -126,9 +130,11 @@ function Login() {
     <AuthContainer>
       <div className="row mx-0 h-100">
         <div className="col-12 col-lg-7 px-0">
-          <div className="bg-image flex-content-center p-20">
-            <SiteBranding logoType="white" maxWidth="120px" />
-            <div className="d-lg-none w-100">{displayAuthbox()}</div>
+          <div className="bg-image d-flex align-items-center justify-content-center p-20">
+            <div className="w-100">
+              <SiteBranding logoType="white" maxWidth="120px" margin="0 auto" />
+              <div className="d-lg-none w-100 mt-3">{displayAuthbox()}</div>
+            </div>
           </div>
         </div>
         <div className="col-12 col-lg-5 flex-content-center d-none d-lg-flex">

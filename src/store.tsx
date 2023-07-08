@@ -9,9 +9,10 @@ export const store = configureStore({
     userState: userReducer,
     customerState: customerReducer,
   },
-  // [authApi.reducerPath]: authApi.reducer,
-  // middleware: (getDefaultMiddleware) =>
-  //   getDefaultMiddleware().concat(authApi.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -2,17 +2,20 @@ import axios from "axios";
 
 import { NON_AUTHORIZATION_APIS } from "./constants";
 
+const appBaseURL = process.env.REACT_APP_BASE_APP_URL ?? "";
+const appApiVersion = process.env.REACT_APP_API_VERSION ?? "";
+
 const axiosInstance = axios.create({
-  baseURL: "https://onboarding-staging-be.bbenext.com/api/1.0.0/",
-  // process.env.REACT_APP_BASE_APP_URL + process.env.REACT_APP_API_VERSION,
+  baseURL: appBaseURL + appApiVersion,
 });
 
 // Add a request interceptor
 axiosInstance.interceptors.request.use((request) => {
-  if (!NON_AUTHORIZATION_APIS.includes(request?.url!)) {
+  if (!NON_AUTHORIZATION_APIS.includes(request?.url || "")) {
     let token = localStorage.getItem("token");
     token = token || "";
     request.headers.Authorization = `Token ${token}`;
+    return request;
   }
   return request;
 });

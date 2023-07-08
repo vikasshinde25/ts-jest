@@ -4,17 +4,13 @@ import axiosInstance from "../../axios";
 
 import { API_CUSTOMER } from "../../constants";
 
-// user logout auth service
+// create async thunk for get customer details
 const customerDetails = createAsyncThunk(
   "customerState",
   async (id: string) => {
     return axiosInstance
       .get(`${API_CUSTOMER + id}/`)
       .then((response) => {
-        if (response?.status === 200) {
-          return response;
-        }
-
         return response;
       })
       .catch((error) => {

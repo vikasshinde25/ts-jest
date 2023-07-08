@@ -9,7 +9,7 @@ import {
   PATH_LOGIN,
 } from "../../constants";
 
-// user login auth service
+// create async thunk for user login
 export const userLogin = createAsyncThunk(
   "user/login",
   async (
@@ -47,7 +47,7 @@ export const userLogin = createAsyncThunk(
   }
 );
 
-// user logout auth service
+// create async thunk for user logout
 export const userLogout = createAsyncThunk("user/logout", async () => {
   return axiosInstance
     .post(API_LOGOUT, {})
@@ -66,16 +66,15 @@ export const userLogout = createAsyncThunk("user/logout", async () => {
     });
 });
 
-// user me auth service
+// create async thunk for get user details
 export const userMe = createAsyncThunk(
   "user/me",
   async (customerId: string) => {
+    const params = { customer: customerId };
+
     return axiosInstance
-      .get(API_USER_ME, {
-        params: customerId,
-      })
+      .get(API_USER_ME, { params })
       .then((response) => {
-        console.log("response", response);
         return response;
       })
       .catch((error) => {

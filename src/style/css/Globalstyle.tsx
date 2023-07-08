@@ -19,6 +19,9 @@ const BodyGlobalStyle = createGlobalStyle`
     font-family: 'Roboto', sans-serif; 
     font-size:14px;
   }
+  .cursor{
+    cursor: pointer;
+  }
   img {
     width: 100%;
     height: auto;
@@ -28,10 +31,10 @@ const BodyGlobalStyle = createGlobalStyle`
     padding:0;
   }
   .w-100{
-    width:100%;
+    width: 100%;
   }
   .h-100{
-    height:100%;
+    height: 100%;
   }
   .disabled {
     opacity: 0.6;
@@ -45,8 +48,26 @@ const BodyGlobalStyle = createGlobalStyle`
   }
   .p-20{
     padding: 20px;
+  }
+  
+  h1{
+    font-size:32px;
+  }
+  h2{
+    font-size:28px;
   }  
- 
+  h3{
+    font-size:24px;
+  }
+  h4{
+    font-size:20px;
+  }
+  h5{
+    font-size:18px;
+  }
+  h6{
+    font-size:16px;
+  }        
 }  
 `;
 export default BodyGlobalStyle;
