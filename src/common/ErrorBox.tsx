@@ -2,10 +2,9 @@ import React from "react";
 
 import styled from "styled-components";
 
-import LoginErrorMsgProps from "../props";
 import { cricketBall } from "../images";
-
 import Theme from "../style/Theme";
+import { LoginErrorMsgProps } from "../props";
 
 // interface PropsTypes {
 //   jkl: Props;
@@ -17,7 +16,7 @@ function ErrorBox({ message }: LoginErrorMsgProps) {
     <ErrorMsgStyle>
       <img src={cricketBall} alt="cricketball" className="cricket-ball" />
       <div className="message-box">
-        <p>{message}</p>
+        <p className="mb-0">{message}</p>
       </div>
     </ErrorMsgStyle>
   );

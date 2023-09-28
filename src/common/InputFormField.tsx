@@ -6,7 +6,7 @@ const InputFormField = styled.div`
 
   label {
     color: ${Theme.black};
-    font-size: ${Theme.normal};
+    font-size: ${Theme.regular};
     font-family: ${Theme.baseFontFamily};
     font-weight: 500;
   }

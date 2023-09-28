@@ -20,7 +20,7 @@ import {
   PATH_STATISTICS,
 } from "../constants";
 import DashboardContainer from "./Dashboard/DashboardContainer";
-import { DocumentPageTitle, Header, PageNotFound } from "../common";
+import { DocumentPageTitle, Footer, Header, PageNotFound } from "../common";
 import { userMe } from "../redux/services/UserServices";
 import StatisticsContainer from "./Statistics/StatisticsContainer";
 import ScheduleContainer from "./Schedule/ScheduleContainer";
@@ -33,7 +33,7 @@ function AuthenticationComponent() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const isLoggedIn = !!localStorage.getItem("token");
+  const isLoggedIn = localStorage.getItem("token");
 
   // useEffect for checking authentication
   useEffect(() => {
@@ -42,14 +42,17 @@ function AuthenticationComponent() {
 
   // useEffect for rendering page title
   useEffect(() => {
+    console.log("isLoggedIn - auth", isLoggedIn);
     if (isLoggedIn) {
       if (location?.pathname?.includes(PATH_ROOT)) {
         navigate(PATH_DASHBOARD);
+        console.log("navigate(PATH_DASHBOARD) inside authentication component");
       }
 
       dispatch(userMe("CMORug2"));
     } else {
       navigate(PATH_LOGIN);
+      console.log("navigate(PATH_LOGIN) inside authentication component");
     }
   }, [dispatch, isLoggedIn, location, navigate]);
 
@@ -78,6 +81,11 @@ function AuthenticationComponent() {
     return <Header />;
   };
 
+  // display footer
+  const displayFooter = () => {
+    return <Footer />;
+  };
+
   /* ********** Main return statement of this component ********** */
   return isLoggedIn ? (
     <>
@@ -85,6 +93,7 @@ function AuthenticationComponent() {
       <Routes>
         <>{renderAuthenticatedComponents()}</>
       </Routes>
+      {displayFooter()}
     </>
   ) : (
     renderDefaultComponent()

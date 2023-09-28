@@ -56,13 +56,42 @@ function Header() {
 
   useOutsideAlerter(dropdownRef, "profile");
 
-  // display site branding
-  const displaySiteBranding = () => {
-    return <SiteBranding logoType="white" maxWidth="100px" margin="none" />;
-  };
-
+  // handle react routing
   const handleHeaderNavigation = (path: string) => {
     navigate(path);
+  };
+
+  // display header social icons
+  const displayHeaderSocialIconList = () => {
+    return (
+      <div id="header-social-icon" className="mt-1">
+        <ul>
+          <li className="cursor">
+            <i className="fa-brands fa-facebook-f" />
+          </li>
+          <li className="cursor">
+            <i className="fa-brands fa-twitter" />
+          </li>
+          <li className="cursor">
+            <i className="fa-brands fa-instagram" />
+          </li>
+          <li className="cursor">
+            <i className="fa-brands fa-skype" />
+          </li>
+          <li className="cursor">
+            <i className="fa-brands fa-pinterest-p" />
+          </li>
+          <li className="cursor">
+            <i className="fa-brands fa-vimeo-v" />
+          </li>
+        </ul>
+      </div>
+    );
+  };
+
+  // display site branding
+  const displaySiteBranding = () => {
+    return <SiteBranding logoType="white" maxWidth="120px" margin="0 auto" />;
   };
 
   // display header navigation
@@ -91,11 +120,8 @@ function Header() {
     );
   };
 
-  // display first letter of user name
-  const displayFirstLetterOfUserName = (
-    firstName: string,
-    lastName: string
-  ) => {
+  // display first and last letter of user name
+  const displayFirstAndLastLetter = (firstName: string, lastName: string) => {
     const firstLetter = firstName?.charAt(0);
     const lastLetter = lastName?.charAt(0);
     return `${firstLetter}${lastLetter}`;
@@ -108,9 +134,9 @@ function Header() {
     return (
       <div className="user-info">
         <ul>
-          <li>
+          <li className="cursor">
             <div className="user-initial-name">
-              {displayFirstLetterOfUserName(firstName, lastName)}
+              {displayFirstAndLastLetter(firstName, lastName)}
             </div>
           </li>
           <li>
@@ -149,18 +175,25 @@ function Header() {
   /* ********** Main return statement of this component ********** */
   return (
     <GlobalHeader id="header">
-      <div className="container">
-        <div className="row">
-          <div className="col-8 col-md-3 col-lg-2">{displaySiteBranding()}</div>
-          <div className="col-4 col-md-9 col-lg-10">
-            <div className="row">
-              <div className="col-6 col-md-9 col-xxl-10">
-                {displayHeaderNavigation()}
-              </div>
-              <div className="col-6 col-md-3 col-xxl-2">
-                {displayUserProfile()}
-              </div>
+      <div id="header-top">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 col-md-5 col-xl-3">
+              {displayHeaderSocialIconList()}
             </div>
+            <div className="col-6 col-md-4 col-xl-6">
+              {displaySiteBranding()}
+            </div>
+            <div className="col-6 col-md-3 col-xl-3">
+              {displayUserProfile()}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="header-bottom">
+        <div className="container">
+          <div className="row">
+            <div className="col-12">{displayHeaderNavigation()}</div>
           </div>
         </div>
       </div>
@@ -170,69 +203,101 @@ function Header() {
 
 export default Header;
 const GlobalHeader = styled.div`
-  background: ${Theme.baseColor};
-  padding: 10px 0;
-  color: ${Theme.white};
+  #header-top {
+    background: ${Theme.baseColor};
+    padding: 10px 0;
+    color: ${Theme.white};
 
-  .header-nav {
-    margin-top: 10px;
-    ul {
-      li {
-        display: inline-block;
-        margin-right: 20px;
+    #header-social-icon {
+      ul {
+        li {
+          display: inline-block;
+          margin-right: 15px;
+          box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px;
+          border-radius: 50%;
+          padding-top: 6px;
+          width: 28px;
+          height: 28px;
+          text-align: center;
 
-        &.active {
-          font-weight: bold;
+          :hover {
+            color: ${Theme.baseColor};
+            background: ${Theme.white};
+          }
+        }
+        li:last-child {
+          margin-right: 0px;
         }
       }
-      li:hover {
-        font-weight: bold;
+    }
+    .user-info {
+      margin-top: 6px;
+      color: ${Theme.white};
+      text-align: right;
+      li {
+        display: inline-block;
+        position: relative;
+        margin-right: 5px;
+        .user-initial-name {
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          background: ${Theme.white};
+          color: ${Theme.baseColor};
+          font-weight: bold;
+          padding-top: 7px;
+          text-align: center;
+        }
+        .user-profile {
+          .user-profile-dropdown-icon {
+            margin-left: 10px;
+          }
+        }
+        .user-profile-dropdown-panel {
+          display: none;
+          position: absolute;
+          padding: 10px;
+          border-radius: 5px;
+          background: ${Theme.white};
+          z-index: 9;
+          width: 200px;
+          right: 0;
+          top: 30px;
+          box-shadow: ${Theme.boxShadow};
+        }
+        .user-profile-dropdown-panel.show {
+          display: block;
+        }
       }
+
       li:last-child {
         margin-right: 0px;
       }
     }
   }
-  .user-info {
-    color: ${Theme.white};
-    text-align: right;
-    li {
-      display: inline-block;
-      position: relative;
-      margin-right: 5px;
-      .user-initial-name {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background: ${Theme.white};
-        color: ${Theme.baseColor};
-        font-weight: bold;
-        padding-top: 9px;
-        text-align: center;
-      }
-      .user-profile {
-        .user-profile-dropdown-icon {
-          margin-left: 10px;
+  #header-bottom {
+    // box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    position: relative;
+
+    .header-nav {
+      ul {
+        li {
+          display: inline-block;
+          padding: 10px 20px;
+          &.active {
+            font-weight: bold;
+            color: ${Theme.white};
+            background: ${Theme.baseColor};
+          }
+        }
+        li:hover {
+          font-weight: bold;
+        }
+        li:last-child {
+          margin-right: 0px;
         }
       }
-      .user-profile-dropdown-panel {
-        display: none;
-        position: absolute;
-        padding: 10px;
-        border-radius: 5px;
-        background: ${Theme.white};
-        width: 200px;
-        right: 0;
-        top: 30px;
-        box-shadow: ${Theme.boxShadow};
-      }
-      .user-profile-dropdown-panel.show {
-        display: block;
-      }
-    }
-
-    li:last-child {
-      margin-right: 0px;
     }
   }
 `;

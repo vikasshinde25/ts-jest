@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+import { useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
+import { PATH_LOGIN } from "../constants";
 
 function PageNotFound() {
+  const navigate = useNavigate();
+
+  const isLoggedIn = localStorage.getItem("token");
+
+  // useEffect
+  useEffect(() => {
+    console.log("isLoggedIn pnf", isLoggedIn);
+    if (isLoggedIn) {
+      navigate(PATH_LOGIN);
+      console.log("navigate(PATH_LOGIN) inside page not found");
+    } else {
+      console.log("page not found inside else page not found");
+    }
+  }, [isLoggedIn, navigate]);
+  /* ********** Main return statement of this component ********** */
   return (
     <PageNotFoundBox>
       {/* <img src={PageNotFoundImg} alt="not-found" /> */}
